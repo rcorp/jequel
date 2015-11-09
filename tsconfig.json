@@ -2,7 +2,7 @@
     "version": "1.5.0-beta",
     "compilerOptions": {
         "target": "es5",
-        "module": "commonjs",
+        "module": "umd",
         "isolatedModules": false,
         "jsx": "react",
         "experimentalDecorators": true,

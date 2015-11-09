@@ -19,7 +19,6 @@ var _util = {
     }
 }
 
-
 export = class Jequel {
     _functions = []
     from = {}
