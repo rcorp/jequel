@@ -1,28 +1,71 @@
-var _util = {
-    getValueBetweenSqBrackets: function (v) { return v.split('[')[1].split(']')[0] },
-    hasSqBracket: function (v) {return ( (v.indexOf('[') != -1) &&  (v.indexOf(']') != -1) )},
-
-    curry: function(func) {
-        var initial_args = [].slice.apply(arguments, [1]);
-        var func_args_length = func.length;
-
-        function curried(args) {
-            if (args.length >= func_args_length) {
-                return func.apply(null, args);
-            }
-
-            return function () {
-                return curried(args.concat([].slice.apply(arguments)));
-            };
-        }
-        return curried(initial_args);
-    }
-}
-
 export = class Jequel {
-    _functions = []
     from = {}
     select = {}
+    results = {}
+    constructor (jsonObj){
+        this.json = jsonObj
+        this.results = this.json
+    }
+
+    Select (selectPath) {
+        this.selectResults = this.bfs (selectPath, this.results)
+        this.results = this.selectResults
+        return this
+    }
+
+    MultiSelect (selectPaths) {
+        selectPaths = selectPaths instanceof Array ? selectPaths: [selectPaths]
+        this.selectResults = selectPaths.map(selectPath =>
+            this.bfs (selectPath, this.results))
+        this.results = this.selectResults
+        return this
+    }
+
+    /**
+     * Transforms an array of arrays sequentially, picking up the ith
+     * element from each array and passing it to callback `cb`.
+     *
+     * @example
+     *
+     *
+     *
+     *
+     * @param  {Function} cb [Callback function which will be invoked with a s
+     * single array.]
+     * @return {[type]}      [description]
+     */
+    SequentialTransformer (cb) {
+        var results = this.results
+
+        //Find the length of the maximum sized array within the array of arrays
+        var l = Math.max.apply(null, results.map(r => r.length))
+
+        //Iterate through each element of the sub array
+        for (var i = 0; i < l; i ++){
+            var args = []
+            // Iterate through each of the sub arrays
+            for (var j = 0; j < results.length; j++){
+                args.push(results[j][i])
+            }
+
+            args = cb(args)
+            //for (var j = 0; j < results.length; j++)
+            //   results[j][i] = args[j]
+        }
+        return results
+    }
+
+
+    Where (whereConditions) {
+        this.results = this.results.filter(result =>
+            whereConditions.every(whereCondition =>
+                this.bfs(whereCondition.path, result).some(val =>
+                    JSON.stringify(val) == JSON.stringify(whereCondition.value)
+                )
+            )
+        )
+        return this
+    }
 
     query ({select, from, where}) {
         this.select = select
@@ -34,8 +77,7 @@ export = class Jequel {
             return selectResults.filter(selectResult => {
                 return this.where.every(where => {
                     return this.bfs(where.path, selectResult).some(val => {
-                        console.log('val', val)
-                        return (val == where.value)
+                        return (JSON.stringify(val) == JSON.stringify(where.value))
                     })
                 })
             })
@@ -44,7 +86,7 @@ export = class Jequel {
     }
     bfs (path, obj?){
         obj = [obj]
-        path.split('.').map(key => obj = this.traverse(key, obj))
+        path.split('.').map(key => obj = this.bfsTraverse(key, obj))
         return obj
     }
     /**
@@ -61,7 +103,7 @@ export = class Jequel {
      * traverse('0', [1, 2, [{a: 3}], ['this', 'that'] ]) => [{a:3}, 'this' ]
      * ```
      */
-    traverse (key, obj?) {
+    bfsTraverse (key, obj?) {
         var data = []
         obj.forEach(x => {
 
