@@ -23,7 +23,7 @@
         "!./src/server/**/*.ts"
     ],
     "files": [
-        "./src/Jequel.ts"
+        "./src/jequel.ts"
     ],
     "exclude": []
 }

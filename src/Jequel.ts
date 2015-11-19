@@ -1,4 +1,4 @@
-export = class Jequel {
+export = class jequel {
     from = {}
     select = {}
     results = {}

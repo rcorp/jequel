@@ -1,5 +1,5 @@
 if (require){
-    var Jequel = require('./Jequel.js')
+    var Jequel = require('./jequel.js')
 }
 
 var objectData =
