@@ -1,6 +1,6 @@
 {
   "name": "jequel-plus",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -14,9 +14,12 @@
     "url": "git+https://github.com/gaurav21r/jequel-plus.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "",
   "bugs": {
     "url": "https://github.com/gaurav21r/jequel-plus/issues"
   },
-  "homepage": "https://github.com/gaurav21r/jequel-plus#readme"
+  "homepage": "https://github.com/gaurav21r/jequel-plus#readme",
+  "devDependencies": {
+    "grunt-docco": "^0.4.0"
+  }
 }
