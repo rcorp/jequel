@@ -2,7 +2,7 @@
   "name": "jequel-plus",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "directories": {
     "doc": "docs"
   },
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/gaurav21r/jequel-plus#readme",
   "devDependencies": {
+    "grunt-browserify": "^4.0.1",
     "grunt-docco": "^0.4.0"
   }
 }
