@@ -1,0 +1,29 @@
+{
+    "version": "1.6.0",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "umd",
+        "isolatedModules": false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "sourceMap": true,
+        "inlineSourceMap": true
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "./**/*.tsx",
+        "!./node_modules/**/*.ts",
+        "!./tests/unit/createModelFromSchema/**/*.ts",
+        "!./src/server/**/*.ts"
+    ],
+    "files": [
+        "./src/jequel.ts"
+    ],
+    "exclude": []
+}
