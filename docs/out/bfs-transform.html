@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>bfs-transform.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="README.html">
+                  README.md
+                </a>
+              
+                
+                <a class="source" href="bfs-transform.html">
+                  bfs-transform.coffee
+                </a>
+              
+                
+                <a class="source" href="pointer.html">
+                  pointer.coffee
+                </a>
+              
+                
+                <a class="source" href="tree-merge.html">
+                  tree-merge.coffee
+                </a>
+              
+                
+                <a class="source" href="tree-rename.html">
+                  tree-rename.coffee
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>bfs-transform.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h2 id="bfs-transformer">BFS Transformer</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function">
+<span class="hljs-title">bfsTransform</span> = <span class="hljs-params">(obj, transforms)</span>-&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Check if any transforms match the root node which has a path <code>&#39;&#39;</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	root = {value: obj, path: <span class="hljs-string">''</span>}
+	<span class="hljs-keyword">for</span> transformPath, transformFunction <span class="hljs-keyword">of</span> transforms
+		<span class="hljs-keyword">if</span> pointer.isMatchingPath transformPath, <span class="hljs-string">''</span>
+			root = transformFunction(root).node</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Initialise a Queue Data Structure and hold the root Object</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	q = [root]
+	<span class="hljs-keyword">while</span> q.length <span class="hljs-keyword">isnt</span> <span class="hljs-number">0</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>This is the parent node being popped out of the Queue.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		parentNode = q.shift()
+		node = {}
+
+		<span class="hljs-keyword">if</span> <span class="hljs-keyword">typeof</span> parentNode.value <span class="hljs-keyword">is</span> <span class="hljs-string">'object'</span>
+			<span class="hljs-keyword">for</span> key, nodeValue <span class="hljs-keyword">of</span> parentNode.value
+				node.path = <span class="hljs-keyword">if</span> parentNode.path <span class="hljs-keyword">then</span> parentNode.path + <span class="hljs-string">'/'</span> + key <span class="hljs-keyword">else</span> key
+				node.value = nodeValue</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Now loop over all the transforms given to us in <code>transforms</code>. A more efficient solution
+later would be to keep track of the level depth of the BFS and only execute those
+transformations of the current level.</p>
+<p>Eg: <code>*/*/*</code> should not be transformed until at least BFS has gone 3 leves down.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				<span class="hljs-keyword">for</span> transformPath, transformFunction <span class="hljs-keyword">of</span> transforms
+					<span class="hljs-keyword">if</span> pointer.isMatchingPath transformPath, node.path
+						newNodes = transformFunction node, {path: parentNode.path, value: parentNode.value}
+						node = newNodes.node
+				q.push {path: node.path, value: node.value}
+	<span class="hljs-keyword">return</span> obj
+<span class="hljs-built_in">module</span>.exports = bfsTransform</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

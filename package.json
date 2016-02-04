@@ -1,0 +1,26 @@
+{
+  "name": "jequel-plus",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaurav21r/jequel-plus.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/gaurav21r/jequel-plus/issues"
+  },
+  "homepage": "https://github.com/gaurav21r/jequel-plus#readme",
+  "devDependencies": {
+    "grunt-browserify": "^4.0.1",
+    "grunt-docco": "^0.4.0"
+  }
+}
