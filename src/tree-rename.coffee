@@ -9,7 +9,7 @@
 # 	}
 # ```
 
-bfsTransform = require './bfsTransform'
+bfsTransform = require './bfs-transform'
 
 createRenameMapping = (fromPath, toPath) ->
 	toPath = toPath.split '/'
@@ -58,5 +58,5 @@ treeRename = (destObj, sourceObj, renameMaps) ->
 				})(toPath, fromPath)
 
 		bfsTransform destObj, transforms
-		
-module.exportsb = treeRename
+
+module.exports = treeRename
