@@ -1,5 +1,5 @@
 {
-  "name": "jequel-plus",
+  "name": "jequel",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gaurav21r/jequel-plus.git"
+    "url": "git+https://github.com/rcorp/jequel.git"
   },
   "author": "",
   "license": "",
   "bugs": {
-    "url": "https://github.com/gaurav21r/jequel-plus/issues"
+    "url": "https://github.com/rcorp/jequel/issues"
   },
-  "homepage": "https://github.com/gaurav21r/jequel-plus#readme",
+  "homepage": "https://github.com/rcorp/jequel#readme",
   "devDependencies": {
     "grunt-browserify": "^4.0.1",
     "grunt-docco": "^0.4.0"
