@@ -14,10 +14,10 @@ module.exports = function(grunt) {
                 transform: [['coffeeify', {
                     bare: true
                 }]],
-                extension: 'coffee',
+                //extension: 'coffee',
                 browserifyOptions: {
                     debug: true,
-                    //standalone: 'jequel'
+                    standalone: 'jequel'
                 }
             },
             dist: {

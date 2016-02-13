@@ -1,5 +1,5 @@
 module.exports = 
-    'bfsTransform': require ('bfs-transform')
-    'pointer': require('pointer')
-    'tree-merge': require('tree-merge')
-    'tree-rename': require('tree-rename')
+    'bfsTransform': require ('./bfs-transform.coffee')
+    'pointer': require('./pointer.coffee')
+    'tree-merge': require('./tree-merge.coffee')
+    'tree-rename': require('./tree-rename.coffee')
