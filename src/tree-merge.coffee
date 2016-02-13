@@ -12,7 +12,7 @@
 #
 # This does not take variable paths in `destPath`. Eg instead of `'*/k'` you have to give `'1/k'`
 
-pointer = require './pointer'
+pointer = require './pointer.coffee'
 
 treeMerge = (destNode, sourceNode, destPath) ->
 	merge = (dNode, sNode) ->

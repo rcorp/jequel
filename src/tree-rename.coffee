@@ -9,7 +9,7 @@
 # 	}
 # ```
 
-bfsTransform = require './bfs-transform'
+bfsTransform = require './bfs-transform.coffee'
 
 createRenameMapping = (fromPath, toPath) ->
 	toPath = toPath.split '/'
