@@ -18,7 +18,8 @@ module.exports = function(grunt) {
                 browserifyOptions: {
                     debug: true,
                     standalone: 'jequel'
-                }
+                },
+                exclude: 'underscore'
             },
             dist: {
                 files: {
