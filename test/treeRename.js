@@ -3,7 +3,7 @@ var expect = require('chai').expect;
 var should = require('chai').should;
 
 
-var treeRename = require ("../src/tree-rename");
+var treeRename = require ("../src/treeRename");
 	describe("treeRename", function() {
 
      var a1 = '*/k3/k4/*/k5';

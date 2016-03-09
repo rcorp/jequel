@@ -2,7 +2,7 @@ var chai = require('chai');
 var expect = require('chai').expect;
 var should = require('chai').should;
 
-var treeMerge   = require ("../src/tree-merge");
+var treeMerge   = require ("../src/treeMerge");
 describe("treeMerge", function(){
 			var a1 =  [{name: 'n1', description: 'dx'}, {name: 'n2'}];
 			var a2 = [{description: 'd1'}, {description: 'd2'}, {description: 'd2'}];
