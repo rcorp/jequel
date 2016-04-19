@@ -10,6 +10,8 @@
 # ```
 
 bfsTransform = require './bfsTransform.coffee'
+_ = require 'underscore'
+
 
 createRenameMapping = (fromPath, toPath) ->
 	toPath = toPath.split '/'

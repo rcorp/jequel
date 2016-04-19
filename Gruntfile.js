@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 					bare: true,
 					watch: true,
 					keepAlive: true,
-					exclude: ['underscore']
+					// exclude: ['underscore']
 	            }
             }
         }

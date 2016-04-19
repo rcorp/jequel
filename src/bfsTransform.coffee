@@ -1,4 +1,5 @@
 # ## BFS Transformer
+pointer = require('./pointer.coffee')
 
 bfsTransform = (obj, transforms)->
 
