@@ -12,6 +12,12 @@
 bfsTransform = require './bfsTransform.coffee'
 _ = require 'underscore'
 
+replaceLastString = (string, subString, newSubString) ->
+	n = string.lastIndexOf(subString);
+	if (n >= 0 && n + subString.length >= string.length)
+    	string = string.substring(0, n) + newSubString;
+	return string;
+
 
 createRenameMapping = (fromPath, toPath) ->
 	toPath = toPath.split '/'
@@ -21,7 +27,6 @@ createRenameMapping = (fromPath, toPath) ->
 	# `toPath` is usually > `fromPath`. Since the subtree will be joint, we will need to append the difference to
 	# `fromPath`
 	fromPath = toPath.slice(0, offset).concat(fromPath)
-
 	# The variable used to hold the return value.
 	map = {}
 	for path, i in toPath
@@ -58,7 +63,6 @@ treeRename = (destObj, renameMaps) ->
 					node: node
 					parent: parent
 				})(toPath, fromPath)
-
 		bfsTransform destObj, transforms
 
 module.exports = treeRename
