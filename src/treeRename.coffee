@@ -30,7 +30,7 @@ createRenameMapping = (fromPath, toPath) ->
 			continue
 	return map
 
-treeRename = (destObj, sourceObj, renameMaps) ->
+treeRename = (destObj, renameMaps) ->
 	map = {}
 	for sourcePath, destPath of renameMaps
 		map = _.extend map, createRenameMapping sourcePath, destPath
