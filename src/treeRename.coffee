@@ -30,7 +30,7 @@ createRenameMapping = (fromPath, toPath) ->
 	# The variable used to hold the return value.
 	map = {}
 	for path, i in toPath
-		if (toPath[i] isnt '*') and (toPath[i] isnt fromPath[i])
+		if (toPath[i] isnt '*')
 			map[fromPath.slice(0, i + 1).join('/')] = toPath.slice(0,i + 1).join('/')
 			fromPath[i] = toPath[i]
 		else
@@ -53,9 +53,10 @@ treeRename = (destObj, renameMaps) ->
 
 			return (node, parent) ->
 				if parent.value[fromKey] isnt undefined
-					parent.value[toKey] = parent.value[fromKey]
+					value = parent.value[fromKey]
 					console.log 'deleting', parent.value[fromKey]
 					delete parent.value[fromKey]
+					parent.value[toKey] = value
 
 				node.path = replaceLastString(node.path, '/' + fromKey, '/' + toKey)
 
@@ -63,6 +64,7 @@ treeRename = (destObj, renameMaps) ->
 					node: node
 					parent: parent
 				})(toPath, fromPath)
+		# console.log transforms
 		bfsTransform destObj, transforms
 
 module.exports = treeRename
