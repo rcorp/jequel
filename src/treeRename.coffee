@@ -54,7 +54,6 @@ treeRename = (destObj, renameMaps) ->
 			return (node, parent) ->
 				if parent.value[fromKey] isnt undefined
 					value = parent.value[fromKey]
-					console.log 'deleting', parent.value[fromKey]
 					delete parent.value[fromKey]
 					parent.value[toKey] = value
 
